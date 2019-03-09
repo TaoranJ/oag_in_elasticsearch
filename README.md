@@ -3,6 +3,11 @@
 Want to explore the Microsoft Academic Graph (MAG) in a search engine? Use these scripts to put MAG dataset in the Elasticsearch!
 
 ## Quickstart
+### Requirements
+
+```bash
+pip install elasticsearch, python-dateutil
+```
 
 ### Download MAG
 
