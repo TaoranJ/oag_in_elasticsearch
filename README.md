@@ -21,7 +21,11 @@ In total, there are 167 files included in `MAG V1` dataset with name `mag_papers
 
 ```bash
 # use multiple cores to index data in parallel
-python gen_index.py --cores [cpus_to_use] [output_path] [input_paths]
+python gen_index.py --cores [cpus_to_use] --index [index_name] --output [output_directory] --input [input_files]
+```
+where `cpus_to_use` gives how many cpus to use to paralle the process, `index_name` is the index name used by Elasticsearch, `output_directory` is the directory for output, and `input_files` are all input files. An example can be
+```bash
+python gen_index.py --cores 4 --index mag_v1 --output mag.es --input mag/*
 ```
 
 In scrip `gen_index.py`, context fields `id`, `year`, `title`, `abstract`, `fos` and `keywords` are taken care of, though there are many other fileds in the original datafile. See [here](https://www.openacademic.ai/oag/) for details.
