@@ -39,7 +39,7 @@ After indexing, the file looks like below.
 
 ### Load dataset to Elasticsearch
 
-By default, `Elasticsearch` supports to insert file less than `100MB`. So if you don't want to change default configuration of Elasticsearch, simplly use sript below to split original files to smaller ones
+By default, `Elasticsearch` supports to insert file less than `100MB`. So if you don't want to change default configuration of Elasticsearch, simplly use script below to split original files to smaller ones
 ```bash
 mkdir [mag.es] && cat [mag.index]/* > [mag.es]/mag.total
 cd [mag.es] && split -l 80000 mag.total && rm mag.total
