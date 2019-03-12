@@ -4,8 +4,9 @@ Want to explore the Microsoft Academic Graph (MAG) in a search engine? Use these
 
 ## Requirements
 
+The following requirement is only required when you want to handle Elasticsearch using Python.
 ```bash
-pip install elasticsearch, python-dateutil
+pip install elasticsearch
 ```
 
 ## Download MAG
