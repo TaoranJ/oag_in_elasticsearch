@@ -39,14 +39,14 @@ After indexing, the file looks like below.
 
 ### Load dataset to Elasticsearch
 
-By default, `Elasticsearch` supports to insert file less than `100MB`. So if you don't want to default configuration of Elasticsearch, simplly use sript below to split original files to smaller ones
+By default, `Elasticsearch` supports to insert file less than `100MB`. So if you don't want to change default configuration of Elasticsearch, simplly use sript below to split original files to smaller ones
 ```bash
 mkdir [mag.es] && cat [mag.index]/* > [mag.es]/mag.total
 cd [mag.es] && split -l 80000 mag.total && rm mag.total
 ```
-where `[mag.index]` is the output directory from last step, and `[mag.es]` is a place to temporarily save mag data preprocessed for Elasticsearch.
+where `[mag.index]` is the output directory used in [Indexing MAG V1 data](#indexing-mag-v1-data), and `[mag.es]` is a place to temporarily save mag data preprocessed for Elasticsearch.
 
-Finally, it's time to load dataset into `Elasticsearch`. 
+Finally, it's time to load dataset into Elasticsearch. 
 
 ```bash
 bash load_data.sh [index_name] [mag.es]
