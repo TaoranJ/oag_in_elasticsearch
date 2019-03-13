@@ -12,19 +12,22 @@ import elasticsearch.helpers
 def query_fos(args):
     if not os.path.exists(args.opath):
         os.makedirs(args.opath)
-    with open(args.seed, 'r') as ifp:
-        for seed in ifp:
-            seed = seed.strip()
-            query = {'query': {'match_phrase': {'fos.keyword': seed}}}
+    queries = json.load(open(args.seed, 'r'))
+    pids = set()
+    opath = os.path.join(args.opath, os.path.basename(args.seed))
+    with open(opath, 'w') as ofp:
+        for ix, query in enumerate(queries, start=1):
+            print('[BATCH {:03d}/{:03d}]'.format(ix, len(queries)))
+            query = {'query': {'match_phrase': {'fos.keyword': query.strip()}}}
             es = elasticsearch.Elasticsearch()
-            res = elasticsearch.helpers.scan(es, index='publication',
-                                             preserve_order=True, query=query)
-            pids = defaultdict(list)
+            res = elasticsearch.helpers.scan(es, index='mag_v1', query=query,
+                                             request_timeout=50)
             for data in res:
-                pids[data['_source']['year']].append(data['_id'])
-            for year, ids in pids.items():
-                json.dump(ids, open(os.path.join(
-                    args.opath, str(year) + '.' + str(seed) + '.json'), 'w'))
+                pid =  data['_id']
+                if pid not in pids:
+                    pids.add(pid)
+                    json.dump(data['_source'], ofp)
+                    ofp.write('\n')
 
 
 if __name__ == "__main__":
