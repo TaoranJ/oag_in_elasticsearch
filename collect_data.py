@@ -26,7 +26,7 @@ def query_fos(args):
                 pid =  data['_id']
                 if pid not in pids:
                     pids.add(pid)
-                    json.dump(data['_source'], ofp)
+                    json.dump({'id': pid, **data['_source']}, ofp)
                     ofp.write('\n')
 
 
