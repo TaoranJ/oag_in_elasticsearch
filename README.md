@@ -2,13 +2,6 @@
 
 Want to explore the Microsoft Academic Graph (MAG) in a search engine? Use these scripts to put MAG dataset in the Elasticsearch!
 
-## Requirements
-
-The following requirement is only required when you want to handle Elasticsearch using Python.
-```bash
-pip install elasticsearch
-```
-
 ## Download MAG
 
 Download **OAG** from [here](https://www.openacademic.ai/oag/). **Open Academic Graph (OAG)** unifies two billion-scale academic graphs: **Microsoft Academic Graph (MAG)** and **AMiner**. Two versions of OAG are provided at this time (`2019-03-12`).
