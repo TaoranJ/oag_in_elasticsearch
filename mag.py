@@ -163,7 +163,7 @@ class MAG(object):
                 continue
             anno = ''.join([c if c.isalnum() else '_' for c in keyword])
             if lens > 1 and anno not in annotation:
-                annotation[anno] = keyword
+                annotation[keyword] = anno
             dictionary.add(anno)
         return dictionary, annotation
 
@@ -196,6 +196,6 @@ class MAG(object):
                 continue
             anno = ''.join([c if c.isalnum() else '_' for c in fos])
             if lens > 1 and anno not in annotation:
-                annotation[anno] = fos
+                annotation[fos] = anno
             dictionary.add(anno)
         return dictionary, annotation
