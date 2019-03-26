@@ -34,8 +34,8 @@ After indexing, the file looks like below.
 
 By default, `Elasticsearch` supports to insert file less than `100MB`. So if you don't want to change default configuration of Elasticsearch, simplly use script below to split original files to smaller ones
 ```bash
-mkdir [mag.es] && cat [mag.index]/* > [mag.es]/mag.total
-cd [mag.es] && split -l 80000 mag.total && rm mag.total
+cat [mag.index]/* > mag.total
+mkdir [mag.es] && split -d -l 80000 mag.total [mag.es]/ && rm mag.total
 ```
 where `[mag.index]` is the output directory used in [Indexing MAG V1 data](#indexing-mag-v1-data), and `[mag.es]` is a place to temporarily save mag data preprocessed for Elasticsearch.
 
