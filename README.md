@@ -1,10 +1,10 @@
-# MAG in Elasticsearch
+# OAG in Elasticsearch
 
-Want to explore the Microsoft Academic Graph (MAG) in a search engine? Use these scripts to put MAG dataset in the Elasticsearch!
+Want to explore the Microsoft Academic Graph (MAG) and Aminer in a search engine? Use these scripts to put MAG and Aminer dataset in the Elasticsearch!
 
-## Download MAG
+## Download OAG
 
-Download **OAG** from [here](https://www.openacademic.ai/oag/). **Open Academic Graph (OAG)** unifies two billion-scale academic graphs: **Microsoft Academic Graph (MAG)** and **AMiner**. Two versions of OAG are provided at this time (`2019-03-12`).
+Download **OAG** from [here](https://www.openacademic.ai/oag/). **Open Academic Graph (OAG)** unifies two billion-scale academic graphs: **Microsoft Academic Graph (MAG)** and **AMiner**.
 
 
 ## MAG V1
@@ -15,14 +15,14 @@ In total, there are 167 files included in `MAG V1` dataset with name `mag_papers
 
 ```bash
 # use multiple cores to index data in parallel
-python gen_index.py --cores [cpus_to_use] --index [index_name] --output [output_directory] --input [input_files]
+python gen_index.py --mag_v1 --cores [cpus_to_use] --index [index_name] --output [output_directory] --input [input_files]
 ```
 where `cpus_to_use` gives how many cpus to use to paralle the process, `index_name` is the index name used by Elasticsearch, `output_directory` is the directory for output, and `input_files` are all input files. An example can be
 ```bash
-python gen_index.py --cores 4 --index mag_v1 --output mag.index --input mag/*
+python gen_index.py --mag_v1 --cores 4 --index mag_v1 --output mag.index --input mag/*
 ```
 
-In script `gen_index.py`, context fields `id`, `year`, `title`, `abstract`, `fos` and `keywords` are taken care of, though there are many other fileds in the original datafile. See [here](https://www.openacademic.ai/oag/) for details.
+In script `gen_index.py`, context fields `id`, `year`, `title`, `abstract`, `fos`, `keywords`, and `venue` are taken care of, though there are many other fileds in the original datafile. See [here](https://www.openacademic.ai/oag/) for details.
 
 After indexing, the file looks like below.
 ```json
