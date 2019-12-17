@@ -2,14 +2,19 @@
 
 Want to explore the Microsoft Academic Graph (MAG) and Aminer in a search engine? Use these scripts to put MAG and Aminer dataset in the Elasticsearch!
 
-## Download OAG
+## Requirement
 
-Download **OAG** from [here](https://www.openacademic.ai/oag/). **Open Academic Graph (OAG)** unifies two billion-scale academic graphs: **Microsoft Academic Graph (MAG)** and **AMiner**.
+```bash
+pip install elasticsearch tqdm 
+```
 
+## Datasets
 
-## MAG V1
+**OAG** can be downloaded from [here](https://www.openacademic.ai/oag/). **Open Academic Graph (OAG)** unifies two billion-scale academic graphs: **Microsoft Academic Graph (MAG)** and **AMiner**.
 
-In total, there are 167 files included in `MAG V1` dataset with name `mag_papers_[0-166].txt`. Each line of each file has the JSON format. The following scrip will load the entire dataset to Elasticsearch. By default, the index name is `mag_v1`. It can be changed by setting `--index [index_name]`.
+### MAG V1
+
+In total, 167 files named in pattern  `mag_papers_[0-166].txt` are included in `MAG V1` dataset. Running the script below to upload the dataset to Elasticsearch. The index name is set up by `--index` option and is `mag_v1` by default. The script was tested on `Elasitcsearch >= 7.4` using English only publications in `MAG V1`.
 
 ```bash
 python index_mag_v1.py --inputs [path/mag_papers*.txt]
