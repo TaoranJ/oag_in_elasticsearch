@@ -23,6 +23,26 @@ def create_index_mag_v1(index_name):
     subprocess.Popen(st, shell=True).communicate()
 
 
+def create_index_aminer_v1(index_name):
+    """Create index.
+
+    Parameters
+    ----------
+    index_name : str
+        Index name.
+
+    """
+
+    st = 'curl -o /dev/null -s -X PUT "localhost:9200/{}" '.format(index_name)
+    st += ('-H \'Content-Type: application/json\' -d '
+           '\'{"settings": {"index" : {"number_of_shards" : 2}}, '
+           '"mappings": {"_field_names": {"enabled": false}, '
+           '"properties": {"year": {"type": "integer"}, '
+           '"id": {"type": "keyword"}, "title": {"type": "text"}, '
+           '"abstract": {"type": "text"}}}}\'')
+    subprocess.Popen(st, shell=True).communicate()
+
+
 def update_settings(index_name):
     """Update settings to speed up the data uploading.
 
